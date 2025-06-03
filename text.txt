@@ -1,0 +1,98 @@
+在 db.js 中，建立以下兩表
+CREATE TABLE Pesticides (
+    PesticideID INT PRIMARY KEY AUTO_INCREMENT,
+    PesticideName VARCHAR(255) NOT NULL UNIQUE,
+    Unit VARCHAR(50) NOT NULL
+);
+CREATE TABLE PesticidePrices (
+    PriceID INT PRIMARY KEY AUTO_INCREMENT,
+    PesticideID INT NOT NULL,
+    Year INT NOT NULL,
+    Price DECIMAL(12, 6) NOT NULL,
+    Currency VARCHAR(10) NOT NULL DEFAULT '元',
+    LastUpdated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE (PesticideID, Year),
+    FOREIGN KEY (PesticideID) REFERENCES Pesticides(PesticideID)
+);
+資料如下
+-- 插入農藥資訊 (如果不存在的話)
+INSERT IGNORE INTO Pesticides (PesticideName, Unit) VALUES
+('菲克利', '元'),
+('賓克隆', '元'),
+('嘉磷塞', '元'),
+('丁基拉草', '元'),
+('培丹', '元'),
+('納乃得', '元');
+
+-- 插入農藥價格資料
+-- 菲克利
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 112, 390.855, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 111, 389.958333, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 110, 380.34, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 109, 379.0625, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 108, 381.423333, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 107, 392.839167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 106, 393.610833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 105, 389.804095, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '菲克利'), 104, 391.854167, '元');
+
+-- 賓克隆
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 112, 610.120833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 111, 610.150833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 110, 593.766667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 109, 594.609167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 108, 591.931667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 107, 593.4425, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 106, 590.1325, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 105, 589.107806, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '賓克隆'), 104, 593.695, '元');
+
+-- 嘉磷塞
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 112, 204.5275, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 111, 221.179167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 110, 159.156667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 109, 151.575833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 108, 149.645833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 107, 151.206667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 106, 142.409167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 105, 147.131667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '嘉磷塞'), 104, 156.648333, '元');
+
+-- 丁基拉草
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 112, 89.3675, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 111, 86.935833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 110, 68.68, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 109, 67.66, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 108, 67.629167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 107, 66.711667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 106, 65.215, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 105, 65.158333, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '丁基拉草'), 104, 65.835, '元');
+
+-- 培丹
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 112, 216.104167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 111, 215.705, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 110, 208.134167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 109, 193.316667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 108, 177.26, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 107, 174.580833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 106, 173.66, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 105, 168.9625, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '培丹'), 104, 161.673333, '元');
+
+-- 納乃得
+INSERT INTO PesticidePrices (PesticideID, Year, Price, Currency) VALUES
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 112, 118.053333, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 111, 117.419167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 110, 114.091667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 109, 110.651667, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 108, 107.8675, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 107, 90.919167, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 106, 86.885833, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 105, 85.305, '元'),
+((SELECT PesticideID FROM Pesticides WHERE PesticideName = '納乃得'), 104, 82.669167, '元');

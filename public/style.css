@@ -1,0 +1,71 @@
+body {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.card {
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-weight: 600;
+  color: #34495e;
+}
+
+input.form-control {
+  width: 200px;
+}
+
+.table {
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+.spinner-border {
+  display: none;
+}
+
+#allPesticidesChart {
+  min-height: 300px;
+}
+
+.pagination .page-item .page-link {
+  color: #3498db;
+  border-radius: 0.5rem;
+  margin: 0 2px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+/* 讓年份查詢結果表格有圓角與間距 */
+#allPricesTable {
+  background: #fff;
+}
+
+.table-responsive {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #fff;
+}

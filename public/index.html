@@ -1,13 +1,84 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>農藥歷年價格查詢</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
-</body>
+<div class="container">
+    <h1 class="mb-4">農藥歷年價格查詢</h1>
 
+    <!-- 搜尋年份區塊 -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">依年份查詢</h5>
+            <div class="row g-2 align-items-center">
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="yearInput" placeholder="請輸入西元年份" />
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" onclick="searchByYear()">搜尋</button>
+                </div>
+                <div class="col-auto">
+                    <div class="spinner-border text-primary" id="loadingSpinner" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 年份查詢結果表格 -->
+        <div class="table-responsive mt-3 d-none" id="yearResultBlock">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                <tr>
+                    <th>農藥名稱</th>
+                    <th>價格</th>
+                </tr>
+                </thead>
+                <tbody id="allPricesTable"></tbody>
+            </table>
+            <nav>
+                <ul class="pagination justify-content-center" id="pagination"></ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 單一農藥歷年價格區塊 -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">單一農藥歷年價格</h5>
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center" id="pesticideTabs"></ul>
+            </nav>
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th>年份</th>
+                        <th>價格</th>
+                        <th>幣別</th>
+                    </tr>
+                    </thead>
+                    <tbody id="pesticideTabTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 所有農藥折線圖區塊 -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">所有農藥歷年價格折線圖</h5>
+            <canvas id="allPesticidesChart" height="200"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js?v=<?= time() ?>"></script>
+</body>
 </html>
